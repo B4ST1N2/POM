@@ -3,6 +3,7 @@ package flows;
 import base.baseTest;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,8 +50,15 @@ public class registerUserTest extends baseTest {
         Select yearSelect = new Select(yearDropdown);
         yearSelect.selectByValue("1990");  // Selecciona el año 1990
 
-        homePage.oprimirBoton(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/div[6]/label"));
-        homePage.oprimirBoton(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/div[7]/label"));
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+
+        WebElement newsletterCheck = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/div[6]/label"));
+        WebElement receiveOffersCheck = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div/div[1]/form/div[7]/label"));
+
+        js.executeScript("arguments[0].scrollIntoView(true);", receiveOffersCheck);
+        newsletterCheck.click();
+        receiveOffersCheck.click();
+
 
         homePage.ingresarTexto(By.xpath("//*[@id=\"first_name\"]"),"root");
         homePage.ingresarTexto(By.xpath("//*[@id=\"last_name\"]"),"root");
