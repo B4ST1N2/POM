@@ -9,9 +9,9 @@ public class HomePageTest extends baseTest {
 
     @Test
     public void consultarTexto1(){
-        homePage.consultarTexto("SmartFit");
+        homePage.visitarPagina("https://automationexercise.com/signup");
         homePage.esperarTeimpoImplicito(6);
-        assertEquals("SmartFit - Yahoo Search Tus resultados",homePage.obtenerTitulo());
+        assertEquals("Automation Exercise - Signup",homePage.obtenerTitulo());
     }
 
 }
